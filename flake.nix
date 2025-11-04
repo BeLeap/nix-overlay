@@ -30,6 +30,7 @@
       in
       {
         devShells.default = pkgs.mkShell {
+          stdenv = pkgs.stdenvNoCC;
           packages = with pkgs; [
             fontconfig
 
