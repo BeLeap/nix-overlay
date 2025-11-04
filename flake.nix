@@ -29,7 +29,7 @@
         };
       in
       {
-        devShells.default = pkgs.mkShell {
+        devShells.default = pkgs.mkShellNoCC {
           stdenv = pkgs.stdenvNoCC;
           packages = with pkgs; [
             fontconfig
