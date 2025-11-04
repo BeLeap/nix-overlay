@@ -3,15 +3,38 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs =
     {
+      nixpkgs,
+      flake-utils,
       ...
     }:
+    let
+      overlay = import ./.;
+    in
     {
       overlays = {
-        default = import ./.;
+        default = overlay;
       };
-    };
+    }
+    // flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import nixpkgs {
+          overlays = [ overlay ];
+        };
+      in
+      {
+        devShells.default = pkgs.mkShell {
+          packages = with pkgs; [
+            fontconfig
+
+            nanum-myeongjo
+          ];
+        };
+      }
+    );
 }
