@@ -35,6 +35,7 @@
             fontconfig
 
             nanum-myeongjo
+            dnsi
           ];
         };
       }
