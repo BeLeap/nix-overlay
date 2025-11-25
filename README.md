@@ -1,1 +1,1 @@
-# Custom fonts for nix
+# Personal nix overlay
