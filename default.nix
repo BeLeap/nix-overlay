@@ -1,3 +1,3 @@
 final: prev: {
-  nanum-myeongjo = prev.callPackage ./nanum-myeongjo.nix { };
+  nanum-myeongjo = prev.callPackage ./pkgs/nanum-myeongjo.nix { };
 }
