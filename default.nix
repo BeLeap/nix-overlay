@@ -2,4 +2,6 @@ final: prev: {
   nanum-myeongjo = prev.callPackage ./pkgs/nanum-myeongjo.nix { };
   dnsi = prev.callPackage ./pkgs/dnsi.nix { };
   kdeconnect-mac = prev.callPackage ./pkgs/kdeconnect-mac.nix { };
+  empiriqa = prev.callPackage ./pkgs/empiriqa.nix { };
+  kotlin-ls = prev.callPackage ./pkgs/kotlin-ls.nix { };
 }
