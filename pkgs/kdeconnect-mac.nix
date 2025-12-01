@@ -6,11 +6,11 @@
 stdenv.mkDerivation rec {
   pname = "kdeconnect";
   name = pname;
-  version = "5498";
+  version = "5560";
 
   src = fetchurl {
-    url = "https://origin.cdn.kde.org/ci-builds/network/kdeconnect-kde/master/macos-arm64/kdeconnect-kde-master-5498-macos-clang-arm64.dmg";
-    hash = "sha256-GOC4hyk9peYuA7GfKrq3ls8ZKQmFcBIWaTCPoN80vdM=";
+    url = "https://origin.cdn.kde.org/ci-builds/network/kdeconnect-kde/master/macos-arm64/kdeconnect-kde-master-${version}-macos-clang-arm64.dmg";
+    hash = "sha256-Prf47KD5XKwI3G1p6mPJ+BNUym9g+rIgCvBvvGMhcqg=";
   };
 
   nativeBuildInputs = [ pkgs.undmg ];
