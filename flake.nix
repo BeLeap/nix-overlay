@@ -29,6 +29,9 @@
         };
       in
       {
+        checks = {
+          kdeconnect-mac = pkgs.kdeconnect-mac;
+        };
         devShells.default = pkgs.mkShellNoCC {
           stdenv = pkgs.stdenvNoCC;
           packages = with pkgs; [
