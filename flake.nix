@@ -39,6 +39,7 @@
 
             nanum-myeongjo
             dnsi
+            envoy-tahoe
           ];
         };
       }

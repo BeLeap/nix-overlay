@@ -4,4 +4,5 @@ final: prev: {
   kdeconnect-mac = prev.callPackage ./pkgs/kdeconnect-mac.nix { };
   empiriqa = prev.callPackage ./pkgs/empiriqa.nix { };
   kotlin-ls = prev.callPackage ./pkgs/kotlin-ls.nix { };
+  envoy-tahoe = prev.callPackage ./pkgs/envoy-tahoe.nix { };
 }
