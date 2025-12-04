@@ -8,11 +8,11 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://github.com/BeLeap/nix-overlay/releases/download/envoy-${version}/envoy-${version}.tahoe.bottle.tar.gz";
-    hash = "";
+    hash = "sha256-6HYO6FfMdCHPvyG8s1TLGbFbo14/qyZ8A2xeDf/vci8=";
   };
 
   unpackPhase = ''
-    tar xzf envoy-1.35.4.tahoe.bottle.tar.gz envoy/1.35.4/bin/envoy
+    tar xzf $src envoy/1.35.4/bin/envoy
   '';
 
   installPhase = ''
