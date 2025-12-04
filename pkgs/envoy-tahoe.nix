@@ -12,7 +12,7 @@ stdenv.mkDerivation rec {
   };
 
   unpackPhase = ''
-    tar xzf $src envoy/1.35.4/bin/envoy
+    tar xzf $src envoy/${version}/bin/envoy
   '';
 
   installPhase = ''
