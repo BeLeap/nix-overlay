@@ -5,4 +5,5 @@ final: prev: {
   empiriqa = prev.callPackage ./pkgs/empiriqa.nix { };
   kotlin-ls = prev.callPackage ./pkgs/kotlin-ls.nix { };
   envoy-tahoe = prev.callPackage ./pkgs/envoy-tahoe.nix { };
+  pchar = prev.callPackage ./pkgs/pchar.nix { };
 }
