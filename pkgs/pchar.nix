@@ -16,7 +16,7 @@ stdenv.mkDerivation rec {
     mv VERSION PCHAR_VERSION
 
     substituteInPlace configure.in configure \
-      --replace 'cat ${srcdir}/VERSION' 'cat ${srcdir}/PCHAR_VERSION'
+      --replace 'cat \${srcdir}/VERSION' 'cat \${srcdir}/PCHAR_VERSION'
 
     substituteInPlace Makefile.in \
       --replace 'VERSION \\\\' 'PCHAR_VERSION \\\\' \
