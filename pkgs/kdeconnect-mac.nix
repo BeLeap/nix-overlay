@@ -10,7 +10,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://github.com/BeLeap/nix-overlay/releases/download/${pname}-${version}/${pname}-${version}.dmg";
-    sha256 = "73cc58f6d5384ce6e8feebcd059bf5294ebda36949ff06feea12de17ef7f816f";
+    hash = "sha256-UarLK8poQ7N9MF7L9KMspaS/ZHjWAk2+4vygQS574bk=";
   };
 
   nativeBuildInputs = [ pkgs.undmg ];
