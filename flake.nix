@@ -40,6 +40,7 @@
             nanum-myeongjo
             dnsi
             envoy-tahoe
+            kubectl-sniff
           ];
         };
       }
