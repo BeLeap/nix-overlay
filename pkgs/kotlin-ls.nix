@@ -17,7 +17,10 @@ stdenvNoCC.mkDerivation {
     hash = "sha256-LCLGo3Q8/4TYI7z50UdXAbtPNgzFYtmUY/kzo2JCln0=";
   };
 
-  nativeBuildInputs = [ pkgs.makeWrapper ];
+  nativeBuildInputs = with pkgs; [
+    makeWrapper
+    patchelf
+  ];
 
   installPhase = ''
     mkdir -p $out/bin
