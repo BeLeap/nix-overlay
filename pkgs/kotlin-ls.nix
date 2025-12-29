@@ -35,4 +35,8 @@ stdenvNoCC.mkDerivation {
   checkPhase = ''
     kotlin-ls --help
   '';
+
+  meta = {
+    mainProgram = "kotlin-ls";
+  };
 }
