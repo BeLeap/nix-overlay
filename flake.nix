@@ -41,6 +41,8 @@
             dnsi
             envoy-tahoe
             kubectl-sniff
+
+            kotlin-ls
           ];
         };
       }
