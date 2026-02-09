@@ -43,6 +43,8 @@
             kubectl-sniff
 
             kotlin-ls
+
+            wezterm-null
           ];
         };
       }
