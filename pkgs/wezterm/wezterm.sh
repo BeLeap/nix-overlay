@@ -38,7 +38,7 @@ esac
 
 # This function wraps bash-preexec.sh so that it can be included verbatim
 # in this file, even though it uses `return` to short-circuit in some cases.
-__wezterm_install_bash_prexec() {
+__wezterm_install_bash_preexec() {
 
     # bash-preexec.sh -- Bash support for ZSH-like 'preexec' and 'precmd' functions.
     # https://github.com/rcaloras/bash-preexec
@@ -419,7 +419,7 @@ __wezterm_install_bash_prexec() {
         __bp_install_after_session_init
     fi
 
-} # end of __wezterm_install_bash_prexec
+} # end of __wezterm_install_bash_preexec
 
 # blesh provides it's own preexec mechanism which is recommended over bash-preexec
 # See https://github.com/akinomyoga/ble.sh/wiki/Manual-%C2%A71-Introduction#user-content-fn-blehook for more details
