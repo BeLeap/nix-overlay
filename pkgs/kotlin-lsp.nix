@@ -16,7 +16,7 @@ stdenvNoCC.mkDerivation rec {
     # origin "https://download-cdn.jetbrains.com/kotlin-lsp/{{ version }}/kotlin-lsp-{{ version }}-mac-aarch64.zip";
     url = "https://github.com/BeLeap/nix-overlay/releases/download/${name}-${version}/kotlin-lsp-${version}-mac-aarch64.zip";
     stripRoot = false;
-    hash = "sha256-1Ooosispz5Bv4W0jaYqEaPEWRqambcsVWE8waq777mw=";
+    hash = "sha256-zwlzVt3KYN0OXKr6sI9XSijXSbTImomSTGRGa+3zCK8=";
   };
 
   nativeBuildInputs = with pkgs; [
