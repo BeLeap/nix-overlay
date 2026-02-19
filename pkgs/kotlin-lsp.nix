@@ -38,10 +38,10 @@ stdenvNoCC.mkDerivation rec {
   '';
 
   checkPhase = ''
-    kotlin-ls --help
+    kotlin-lsp --help
   '';
 
   meta = {
-    mainProgram = "kotlin-ls";
+    mainProgram = "kotlin-lsp";
   };
 }

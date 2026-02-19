@@ -42,7 +42,7 @@
             envoy-tahoe
             kubectl-sniff
 
-            kotlin-ls
+            kotlin-lsp
 
             wezterm-null
           ];
