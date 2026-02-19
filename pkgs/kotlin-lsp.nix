@@ -5,9 +5,7 @@
   lib,
 }:
 let
-  runtimeDep = with pkgs; [
-    javaPackages.compiler.temurin-bin.jre-17
-  ];
+  java = pkgs.javaPackages.compiler.temurin-bin.jre-17;
 in
 stdenvNoCC.mkDerivation rec {
   name = "kotlin-lsp";
@@ -22,6 +20,7 @@ stdenvNoCC.mkDerivation rec {
   nativeBuildInputs = with pkgs; [
     makeWrapper
     patchelf
+    java
   ];
 
   installPhase = ''
@@ -34,7 +33,8 @@ stdenvNoCC.mkDerivation rec {
     mv native $out/native
 
     wrapProgram $out/bin/kotlin-lsp \
-      --prefix PATH : ${lib.makeBinPath runtimeDep}
+      --prefix PATH : ${lib.makeBinPath [ java ]} \
+      --set LOCAL_JRE_PATH ${java}
   '';
 
   checkPhase = ''
