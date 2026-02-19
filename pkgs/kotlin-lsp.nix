@@ -9,12 +9,14 @@ let
     javaPackages.compiler.temurin-bin.jre-17
   ];
 in
-stdenvNoCC.mkDerivation {
-  name = "kotlin-ls";
+stdenvNoCC.mkDerivation rec {
+  name = "kotlin-lsp";
+  version = "261.13587.0";
   src = fetchzip {
-    url = "https://download-cdn.jetbrains.com/kotlin-lsp/0.253.10629/kotlin-0.253.10629.zip";
+    # origin "https://download-cdn.jetbrains.com/kotlin-lsp/{{ version }}/kotlin-lsp-{{ version }}-mac-aarch64.zip";
+    url = "https://github.com/BeLeap/nix-overlay/releases/download/${name}-${version}/kotlin-lsp-${version}-mac-aarch64.zip";
     stripRoot = false;
-    hash = "sha256-LCLGo3Q8/4TYI7z50UdXAbtPNgzFYtmUY/kzo2JCln0=";
+    hash = "sha256-1Ooosispz5Bv4W0jaYqEaPEWRqambcsVWE8waq777mw=";
   };
 
   nativeBuildInputs = with pkgs; [
@@ -27,11 +29,11 @@ stdenvNoCC.mkDerivation {
 
     sed -i 's/\/lib/\/..\/lib/' kotlin-lsp.sh
 
-    install -m +x kotlin-lsp.sh $out/bin/kotlin-ls
+    install -m +x kotlin-lsp.sh $out/bin/kotlin-lsp
     mv lib $out/lib
     mv native $out/native
 
-    wrapProgram $out/bin/kotlin-ls \
+    wrapProgram $out/bin/kotlin-lsp \
       --prefix PATH : ${lib.makeBinPath runtimeDep}
   '';
 
