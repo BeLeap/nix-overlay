@@ -5,7 +5,7 @@
   lib,
 }:
 let
-  java = pkgs.javaPackages.compiler.temurin-bin.jre-17;
+  java = pkgs.javaPackages.compiler.temurin-bin.jre-21;
 in
 stdenvNoCC.mkDerivation rec {
   name = "kotlin-lsp";
