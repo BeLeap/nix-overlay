@@ -45,7 +45,8 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     description = "Measure bandwidth, latency, and loss along an Internet path";
     homepage = "https://www.kitchenlab.org/www/bmah/Software/pchar/";
-    license = licenses.unfree;
+    # Upstream states Sandia dedicated its rights to the public.
+    license = licenses.publicDomain;
     platforms = platforms.unix;
     mainProgram = "pchar";
   };
