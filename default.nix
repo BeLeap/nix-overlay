@@ -6,5 +6,6 @@ final: prev: {
   kotlin-lsp = prev.callPackage ./pkgs/kotlin-lsp { };
   envoy-tahoe = prev.callPackage ./pkgs/envoy-tahoe.nix { };
   kubectl-sniff = prev.callPackage ./pkgs/kubectl-sniff.nix { };
+  pchar = prev.callPackage ./pkgs/pchar.nix { };
   wezterm-null = prev.callPackage ./pkgs/wezterm { };
 }

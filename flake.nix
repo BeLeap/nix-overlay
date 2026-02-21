@@ -41,6 +41,7 @@
             dnsi
             envoy-tahoe
             kubectl-sniff
+            pchar
 
             kotlin-lsp
 
