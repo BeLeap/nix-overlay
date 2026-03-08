@@ -4,11 +4,14 @@
   fetchurl,
 }:
 stdenv.mkDerivation rec {
-  pname = "pchar";
+  name = "pchar";
+  pname = "${name}";
   version = "1.5";
 
   src = fetchurl {
-    url = "https://www.kitchenlab.org/www/bmah/Software/pchar/pchar-${version}.tar.gz";
+    # Original Url
+    # url = "https://www.kitchenlab.org/www/bmah/Software/pchar/pchar-${version}.tar.gz";
+    url = "https://github.com/BeLeap/nix-overlay/releases/download/${name}-${version}/${name}-${version}.tar.gz";
     hash = "sha256-cBkpcITxAAVXoBlQFTLsrmd3KFFxcynMAiJ/XBfjbSc=";
   };
 
