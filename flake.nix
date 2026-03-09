@@ -40,7 +40,7 @@
             pchar
             kotlin-lsp
             wezterm-null
-            joplin-cli
+            joplin-terminal
           ];
         };
       }

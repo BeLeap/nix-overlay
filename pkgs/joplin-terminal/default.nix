@@ -1,13 +1,13 @@
-{ joplin-cli }:
-joplin-cli.overrideAttrs (finalAttrs: prevAttrs: {
+{joplin-cli}:
+joplin-cli.overrideAttrs (final: prev: {
   postInstall =
-    (prevAttrs.postInstall or "")
+    (prev.postInstall or "")
     + ''
       appCliApp="$out/lib/packages/app-cli/app"
       packageJson="$appCliApp/package.json"
       if [ ! -f "$packageJson" ]; then
         mkdir -p "$appCliApp"
-        printf '%s\n' '{"version":"${finalAttrs.version}"}' >"$packageJson"
+        printf '%s\n' '{"version":"${final.version}"}' >"$packageJson"
       fi
     '';
 })
