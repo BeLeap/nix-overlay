@@ -6,29 +6,25 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs =
-    {
-      nixpkgs,
-      flake-utils,
-      ...
-    }:
-    let
-      overlay = import ./.;
-    in
+  outputs = {
+    nixpkgs,
+    flake-utils,
+    ...
+  }: let
+    overlay = import ./.;
+  in
     {
       overlays = {
         default = overlay;
       };
     }
     // flake-utils.lib.eachDefaultSystem (
-      system:
-      let
+      system: let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ overlay ];
+          overlays = [overlay];
         };
-      in
-      {
+      in {
         checks = {
           kdeconnect-mac = pkgs.kdeconnect-mac;
         };
@@ -42,10 +38,9 @@
             envoy-tahoe
             kubectl-sniff
             pchar
-
             kotlin-lsp
-
             wezterm-null
+            joplin-terminal
           ];
         };
       }
