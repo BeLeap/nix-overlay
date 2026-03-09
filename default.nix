@@ -8,4 +8,5 @@ final: prev: {
   kubectl-sniff = prev.callPackage ./pkgs/kubectl-sniff.nix { };
   pchar = prev.callPackage ./pkgs/pchar.nix { };
   wezterm-null = prev.callPackage ./pkgs/wezterm { };
+  joplin-cli = prev.callPackage ./pkgs/joplin-cli { };
 }
