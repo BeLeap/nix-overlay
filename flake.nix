@@ -36,10 +36,10 @@
       in {
         packages =
           {
-            inherit (pkgs)
+            inherit
+              (pkgs)
               dnsi
               empiriqa
-              envoy-tahoe
               joplin-terminal
               kotlin-lsp
               kubectl-sniff
@@ -49,25 +49,14 @@
               ;
           }
           // pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
-            inherit (pkgs) kdeconnect-mac;
+            inherit
+              (pkgs)
+              envoy-tahoe
+              kdeconnect-mac
+              ;
           };
         checks = pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
           kdeconnect-mac = pkgs.kdeconnect-mac;
-        };
-        devShells.default = pkgs.mkShellNoCC {
-          stdenv = pkgs.stdenvNoCC;
-          packages = with pkgs; [
-            fontconfig
-
-            nanum-myeongjo
-            dnsi
-            envoy-tahoe
-            kubectl-sniff
-            pchar
-            kotlin-lsp
-            wezterm-null
-            joplin-terminal
-          ];
         };
       }
     );
