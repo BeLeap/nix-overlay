@@ -25,7 +25,7 @@
           overlays = [overlay];
         };
       in {
-        checks = {
+        checks = pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
           kdeconnect-mac = pkgs.kdeconnect-mac;
         };
         devShells.default = pkgs.mkShellNoCC {
