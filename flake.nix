@@ -38,6 +38,8 @@
           {
             inherit
               (pkgs)
+              kubectl-check
+              boda
               nanum-myeongjo
               dnsi
               empiriqa
