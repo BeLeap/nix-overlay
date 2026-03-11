@@ -1,10 +1,14 @@
-{ lib, rustPlatform, fetchFromGitHub }:
+{
+  lib,
+  rustPlatform,
+  fetchFromGitHub,
+}:
 rustPlatform.buildRustPackage rec {
   pname = "kubectl-check";
   version = "0.2440.0";
 
   src = fetchFromGitHub {
-    owner = "beleap";
+    owner = "BeLeap";
     repo = "kubectl-check";
     tag = "v${version}";
     hash = "sha256-hAZ35ZKArHHNpiGLtOFTR1LmHT/VxaxfmhBoYgZRM6g=";

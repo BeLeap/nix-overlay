@@ -1,10 +1,14 @@
-{ lib, rustPlatform, fetchFromGitHub }:
+{
+  lib,
+  rustPlatform,
+  fetchFromGitHub,
+}:
 rustPlatform.buildRustPackage rec {
   pname = "boda";
   version = "0.2526.0";
 
   src = fetchFromGitHub {
-    owner = "beleap";
+    owner = "BeLeap";
     repo = "boda";
     tag = version;
     hash = "sha256-NS0p7W2nyrKEQ17Cc9JrW002hPi1zVXIBwzXGBz2WNk=";
