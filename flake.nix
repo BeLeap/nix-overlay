@@ -38,6 +38,7 @@
           {
             inherit
               (pkgs)
+              boda
               nanum-myeongjo
               dnsi
               empiriqa
