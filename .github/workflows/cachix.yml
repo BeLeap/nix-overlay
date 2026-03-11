@@ -14,6 +14,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
+      CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
       CACHIX_CACHE_NAME: ${{ vars.CACHIX_CACHE_NAME }}
     steps:
       - name: Checkout repository
@@ -25,17 +26,17 @@ jobs:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Cachix for pull-only access
-        if: ${{ env.CACHIX_CACHE_NAME != '' && !(github.event_name == 'push' && github.ref == 'refs/heads/master' && secrets.CACHIX_AUTH_TOKEN != '') }}
+        if: ${{ env.CACHIX_CACHE_NAME != '' && !(github.event_name == 'push' && github.ref == 'refs/heads/master' && env.CACHIX_AUTH_TOKEN != '') }}
         uses: cachix/cachix-action@v15
         with:
           name: ${{ env.CACHIX_CACHE_NAME }}
 
       - name: Set up Cachix for push access
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && env.CACHIX_CACHE_NAME != '' && secrets.CACHIX_AUTH_TOKEN != '' }}
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && env.CACHIX_CACHE_NAME != '' && env.CACHIX_AUTH_TOKEN != '' }}
         uses: cachix/cachix-action@v15
         with:
           name: ${{ env.CACHIX_CACHE_NAME }}
-          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+          authToken: ${{ env.CACHIX_AUTH_TOKEN }}
 
       - name: Check flake outputs
         run: nix flake check --print-build-logs
