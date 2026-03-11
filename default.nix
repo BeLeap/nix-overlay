@@ -1,4 +1,5 @@
 final: prev: {
+  kubectl-check = prev.callPackage ./pkgs/kubectl-check.nix {};
   boda = prev.callPackage ./pkgs/boda.nix {};
   nanum-myeongjo = prev.callPackage ./pkgs/nanum-myeongjo.nix {};
   dnsi = prev.callPackage ./pkgs/dnsi.nix {};
