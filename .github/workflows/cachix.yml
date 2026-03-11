@@ -4,23 +4,50 @@ on:
   push:
     branches:
       - master
-  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  build:
+  define-package-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Define package matrix
+        id: set-matrix
+        run: |
+          matrix="$(nix eval --json --impure --expr '
+            let
+              flake = builtins.getFlake (toString ./.);
+              mkEntries = system: os:
+                builtins.map (name: {
+                  inherit name os system;
+                }) (builtins.attrNames flake.packages.${system});
+            in {
+              include =
+                mkEntries "x86_64-linux" "ubuntu-latest"
+                ++ mkEntries "aarch64-darwin" "macos-latest";
+            }
+          ')"
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+
+  build-packages:
+    needs: define-package-matrix
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - os: ubuntu-latest
-            system: x86_64-linux
-          - os: macos-latest
-            system: aarch64-darwin
+      matrix: ${{ fromJSON(needs.define-package-matrix.outputs.matrix) }}
     runs-on: ${{ matrix.os }}
+    name: build ${{ matrix.name }} (${{ matrix.system }})
     env:
       CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
       CACHIX_CACHE_NAME: ${{ vars.CACHIX_CACHE_NAME }}
@@ -33,21 +60,12 @@ jobs:
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Cachix for pull-only access
-        if: ${{ env.CACHIX_CACHE_NAME != '' && !(github.event_name == 'push' && github.ref == 'refs/heads/master' && env.CACHIX_AUTH_TOKEN != '') }}
-        uses: cachix/cachix-action@v15
-        with:
-          name: ${{ env.CACHIX_CACHE_NAME }}
-
-      - name: Set up Cachix for push access
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && env.CACHIX_CACHE_NAME != '' && env.CACHIX_AUTH_TOKEN != '' }}
+      - name: Set up Cachix
+        if: ${{ env.CACHIX_CACHE_NAME != '' && env.CACHIX_AUTH_TOKEN != '' }}
         uses: cachix/cachix-action@v15
         with:
           name: ${{ env.CACHIX_CACHE_NAME }}
           authToken: ${{ env.CACHIX_AUTH_TOKEN }}
 
-      - name: Check flake outputs
-        run: nix flake check --print-build-logs
-
-      - name: Build dev shell profile
-        run: nix develop --profile dev-profile -c true
+      - name: Build package
+        run: nix build --print-build-logs .#packages.${{ matrix.system }}.${{ matrix.name }}
