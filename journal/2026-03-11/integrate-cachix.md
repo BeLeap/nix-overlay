@@ -6,3 +6,4 @@
 - Restricted the `kdeconnect-mac` flake check to `aarch64-darwin` so Linux CI runners do not evaluate a macOS-only derivation.
 - Kept only the binary-cache consumption snippet in `README.md`, without extra CI setup documentation.
 - Added the `beleap-nix-overlay` Cachix `nixConfig` directly to `flake.nix`.
+- Exposed overlay packages through flake `packages` so they can be built as `.#<pkg>`, with `kdeconnect-mac` only exposed on `aarch64-darwin`.

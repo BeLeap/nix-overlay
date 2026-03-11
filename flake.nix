@@ -34,6 +34,23 @@
           overlays = [overlay];
         };
       in {
+        packages =
+          {
+            inherit (pkgs)
+              dnsi
+              empiriqa
+              envoy-tahoe
+              joplin-terminal
+              kotlin-lsp
+              kubectl-sniff
+              nanum-myeongjo
+              pchar
+              wezterm-null
+              ;
+          }
+          // pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
+            inherit (pkgs) kdeconnect-mac;
+          };
         checks = pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
           kdeconnect-mac = pkgs.kdeconnect-mac;
         };
