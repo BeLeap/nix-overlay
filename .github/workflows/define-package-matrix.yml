@@ -1,0 +1,43 @@
+name: define-package-matrix
+
+on:
+  workflow_call:
+    outputs:
+      matrix:
+        description: Package build matrix derived from flake package outputs.
+        value: ${{ jobs.define-package-matrix.outputs.matrix }}
+
+permissions:
+  contents: read
+
+jobs:
+  define-package-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Define package matrix
+        id: set-matrix
+        run: |
+          matrix="$(nix eval --json --impure --expr '
+            let
+              flake = builtins.getFlake (toString ./.);
+              mkEntries = system: os:
+                builtins.map (name: {
+                  inherit name os system;
+                }) (builtins.attrNames flake.packages.${system});
+            in {
+              include =
+                mkEntries "x86_64-linux" "ubuntu-latest"
+                ++ mkEntries "aarch64-darwin" "macos-latest";
+            }
+          ')"
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
