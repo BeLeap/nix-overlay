@@ -1,5 +1,5 @@
 {
-  description = "Fonts for nix";
+  description = "BeLeap personal nix-overlay";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
