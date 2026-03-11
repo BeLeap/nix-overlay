@@ -38,14 +38,14 @@
           {
             inherit
               (pkgs)
+              nanum-myeongjo
               dnsi
               empiriqa
-              joplin-terminal
               kotlin-lsp
               kubectl-sniff
-              nanum-myeongjo
               pchar
               wezterm-null
+              joplin-terminal
               ;
           }
           // pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
