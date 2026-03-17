@@ -6,14 +6,14 @@
 stdenv.mkDerivation rec {
   pname = "kdeconnect";
   name = pname;
-  version = "5612";
+  version = "6016";
 
   src = fetchurl {
     url = "https://github.com/BeLeap/nix-overlay/releases/download/${pname}-${version}/${pname}-${version}.dmg";
-    hash = "sha256-UarLK8poQ7N9MF7L9KMspaS/ZHjWAk2+4vygQS574bk=";
+    hash = "sha256-h/4nUf4Bgs6cEcUWJ1oNQnU3Jt30bLQfZT/pofphRnE=";
   };
 
-  nativeBuildInputs = [ pkgs.undmg ];
+  nativeBuildInputs = [pkgs.undmg];
 
   sourceRoot = ".";
 
