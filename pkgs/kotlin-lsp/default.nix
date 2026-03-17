@@ -17,6 +17,7 @@ in
     };
 
     patches = [
+      ./patches/lib-path.patch
       ./patches/kotlin-lsp-respect-local-jre-path.patch
     ];
 
@@ -28,8 +29,6 @@ in
 
     installPhase = ''
       mkdir -p $out/bin
-
-      sed -i 's/\/lib/\/..\/lib/' kotlin-lsp.sh
 
       install -m +x kotlin-lsp.sh $out/bin/kotlin-lsp
       mv lib $out/lib

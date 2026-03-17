@@ -1,0 +1,12 @@
+--- a/kotlin-lsp.sh
++++ b/kotlin-lsp.sh
+@@ -12,1 +12,1 @@
+-if [ ! -d "$DIR/lib" ]; then
++if [ ! -d "$DIR/../lib" ]; then
+
+--- a/kotlin-lsp.sh
++++ b/kotlin-lsp.sh
+@@ -84,1 +84,1 @@
+-    -cp "$DIR/lib/*" com.jetbrains.ls.kotlinLsp.KotlinLspServerKt "$@"
++    -cp "$DIR/../lib/*" com.jetbrains.ls.kotlinLsp.KotlinLspServerKt "$@"
+
