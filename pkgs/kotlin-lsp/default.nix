@@ -8,7 +8,7 @@
 in
   stdenvNoCC.mkDerivation rec {
     name = "kotlin-lsp";
-    version = "261.13587.0";
+    version = "262.1817.0";
     src = fetchzip {
       # origin
       # url = "https://download-cdn.jetbrains.com/kotlin-lsp/${version}/kotlin-lsp-${version}-mac-aarch64.zip";
