@@ -10,7 +10,8 @@ in
     name = "kotlin-lsp";
     version = "261.13587.0";
     src = fetchzip {
-      # origin "https://download-cdn.jetbrains.com/kotlin-lsp/{{ version }}/kotlin-lsp-{{ version }}-mac-aarch64.zip";
+      # origin
+      # url = "https://download-cdn.jetbrains.com/kotlin-lsp/${version}/kotlin-lsp-${version}-mac-aarch64.zip";
       url = "https://github.com/BeLeap/nix-overlay/releases/download/${name}-${version}/kotlin-lsp-${version}-mac-aarch64.zip";
       stripRoot = false;
       hash = "sha256-zwlzVt3KYN0OXKr6sI9XSijXSbTImomSTGRGa+3zCK8=";
