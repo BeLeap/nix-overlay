@@ -18,7 +18,7 @@ in
 
     patches = [
       ./patches/lib-path.patch
-      ./patches/kotlin-lsp-respect-local-jre-path.patch
+      ./patches/local-jre-path.patch
     ];
 
     nativeBuildInputs = with pkgs; [
