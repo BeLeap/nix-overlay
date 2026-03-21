@@ -13,14 +13,28 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    boda-flake = {
+      url = "github:BeLeap/boda?ref=master";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+    kubectl-check-flake = {
+      url = "github:BeLeap/kubectl-check";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
   outputs = {
     nixpkgs,
     flake-utils,
+    boda-flake,
+    kubectl-check-flake,
     ...
   }: let
-    overlay = import ./.;
+    overlay = import ./overlay.nix {
+      inherit boda-flake kubectl-check-flake;
+    };
   in
     {
       overlays = {

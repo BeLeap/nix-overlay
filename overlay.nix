@@ -1,6 +1,9 @@
-final: prev: {
-  kubectl-check = prev.callPackage ./pkgs/kubectl-check.nix {};
-  boda = prev.callPackage ./pkgs/boda.nix {};
+{
+  boda-flake,
+  kubectl-check-flake,
+}: final: prev: {
+  kubectl-check = kubectl-check-flake.packages.${final.stdenv.hostPlatform.system}.default;
+  boda = boda-flake.packages.${final.stdenv.hostPlatform.system}.default;
   nanum-myeongjo = prev.callPackage ./pkgs/nanum-myeongjo.nix {};
   dnsi = prev.callPackage ./pkgs/dnsi.nix {};
   empiriqa = prev.callPackage ./pkgs/empiriqa.nix {};
