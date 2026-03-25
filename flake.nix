@@ -69,6 +69,7 @@
               (pkgs)
               envoy-tahoe
               kdeconnect-mac
+              google-messages
               ;
           };
         checks = pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
