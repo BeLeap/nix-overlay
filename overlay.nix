@@ -15,4 +15,5 @@
 
   kdeconnect-mac = prev.callPackage ./pkgs/kdeconnect-mac.nix {};
   envoy-tahoe = prev.callPackage ./pkgs/envoy-tahoe.nix {};
+  google-messages = prev.callPackage ./pkgs/google-messages.nix {};
 }
