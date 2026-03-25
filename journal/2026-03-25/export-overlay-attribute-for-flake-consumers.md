@@ -1,0 +1,3 @@
+- Added a top-level `overlay` flake output in [`flake.nix`](/Users/beleap/pj/github.com/beleap/nix-overlay/flake.nix) while keeping `overlays.default`.
+- This restores compatibility with downstream flakes that import the repository as `inputs.beleap-overlay.url = "github:BeLeap/nix-overlay";` and then use `beleap-overlay.overlay`.
+- Updated [`README.md`](/Users/beleap/pj/github.com/beleap/nix-overlay/README.md) with a concrete flake usage example and noted that `overlays.default` remains available.
