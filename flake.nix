@@ -37,7 +37,9 @@
     };
   in
     {
-      inherit overlay;
+      overlays = {
+        default = overlay;
+      };
     }
     // flake-utils.lib.eachDefaultSystem (
       system: let
