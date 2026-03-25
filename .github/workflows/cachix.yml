@@ -59,7 +59,7 @@ jobs:
 
       - name: Set up Cachix
         if: ${{ env.CACHIX_CACHE_NAME != '' && env.CACHIX_AUTH_TOKEN != '' }}
-        uses: cachix/cachix-action@v15
+        uses: cachix/cachix-action@v17
         with:
           name: ${{ env.CACHIX_CACHE_NAME }}
           authToken: ${{ env.CACHIX_AUTH_TOKEN }}
