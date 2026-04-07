@@ -62,6 +62,7 @@
               pchar
               wezterm-null
               joplin-terminal
+              rusty-kotlin-lsp
               ;
           }
           // pkgs.lib.optionalAttrs (system == "aarch64-darwin") {

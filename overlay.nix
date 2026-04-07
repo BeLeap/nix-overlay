@@ -12,6 +12,7 @@
   pchar = prev.callPackage ./pkgs/pchar.nix {};
   wezterm-null = prev.callPackage ./pkgs/wezterm {};
   joplin-terminal = prev.callPackage ./pkgs/joplin-terminal {};
+  rusty-kotlin-lsp = prev.callPackage ./pkgs/rusty-kotlin-lsp.nix {};
 
   kdeconnect-mac = prev.callPackage ./pkgs/kdeconnect-mac.nix {};
   envoy-tahoe = prev.callPackage ./pkgs/envoy-tahoe.nix {};
