@@ -10,11 +10,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1757252778,
-        "narHash": "sha256-NCEOPctNTK16zMIycWICc+eG+HGMzJQXaLtDojCq8E8=",
+        "lastModified": 1776054466,
+        "narHash": "sha256-GRpKaP3fT37t/oanWPPE25LtWCOt1jr/Tfuai4+8R/U=",
         "owner": "BeLeap",
         "repo": "boda",
-        "rev": "420f11c739db8570b41da565d3ec00c52fb03cf4",
+        "rev": "f6458f49a14b2030404d4ab44ee2df0637e982b8",
         "type": "github"
       },
       "original": {
@@ -67,11 +67,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1772773019,
-        "narHash": "sha256-E1bxHxNKfDoQUuvriG71+f+s/NT0qWkImXsYZNFFfCs=",
+        "lastModified": 1775710090,
+        "narHash": "sha256-ar3rofg+awPB8QXDaFJhJ2jJhu+KqN/PRCXeyuXR76E=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "aca4d95fce4914b3892661bcb80b8087293536c6",
+        "rev": "4c1018dae018162ec878d42fec712642d214fdfa",
         "type": "github"
       },
       "original": {
