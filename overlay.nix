@@ -9,7 +9,6 @@
   empiriqa = prev.callPackage ./pkgs/empiriqa.nix {};
   kotlin-lsp = prev.callPackage ./pkgs/kotlin-lsp {};
   kubectl-sniff = prev.callPackage ./pkgs/kubectl-sniff.nix {};
-  kubectl-view-allocations = prev.callPackage ./pkgs/kubectl-view-allocations.nix {};
   pchar = prev.callPackage ./pkgs/pchar.nix {};
   wezterm-null = prev.callPackage ./pkgs/wezterm {};
   joplin-terminal = prev.callPackage ./pkgs/joplin-terminal {};
