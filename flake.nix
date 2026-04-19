@@ -59,6 +59,7 @@
               empiriqa
               kotlin-lsp
               kubectl-sniff
+              kubectl-view-allocations
               pchar
               wezterm-null
               joplin-terminal
