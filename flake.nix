@@ -14,12 +14,12 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     boda-flake = {
-      url = "github:BeLeap/boda?ref=master";
+      url = "github:BeLeap/boda?ref=0.2616.0";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
     kubectl-check-flake = {
-      url = "github:BeLeap/kubectl-check";
+      url = "github:BeLeap/kubectl-check?ref=v0.2615.0";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
