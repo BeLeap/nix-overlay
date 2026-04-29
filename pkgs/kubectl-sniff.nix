@@ -1,46 +1,19 @@
 {
-  stdenvNoCC,
-  fetchurl,
-  stdenv,
-  pkgs,
+  buildGoModule,
+  fetchFromGitHub,
 }:
-let
-  mapping = {
-    "aarch64-darwin" = "kubectl-sniff-darwin-arm64";
-    "x86_64-darwin" = "kubectl-sniff-darwin";
-    "x86_64-linux" = "kubectl-sniff";
-  };
-  binary = mapping.${stdenv.hostPlatform.system};
-in
-stdenvNoCC.mkDerivation rec {
+buildGoModule rec {
   pname = "kubectl-sniff";
   version = "1.6.2";
 
-  nativeBuildInputs = with pkgs; [
-    unzip
-  ];
-
-  src = fetchurl {
-    url = "https://github.com/eldadru/ksniff/releases/download/v${version}/ksniff.zip";
-    hash = "sha256-xZtcnqhNbLdxCW8SRskZtxOJ+dQjToWPSSkgiVflYf0=";
+  src = fetchFromGitHub {
+    owner = "eldadru";
+    repo = "ksniff";
+    rev = "v${version}";
+    hash = "sha256-Dz+qnpUKdhNdYC74lqUZXwCk73jb6pY2tIGjtTvNiUQ=";
   };
 
-  unpackPhase = ''
-    runHook preUnpack
-    unzip $src
-    ls -alR || true
-    runHook postUnpack
-  '';
+  vendorHash = "sha256-7pSpOF8UASWqRMWaomoUBA3pD8t0qWiaIcGlXEm0Yx0=";
 
-  installPhase = ''
-    runHook preInstall
-
-    mkdir -p $out/bin
-    install -m755 ${binary} $out/bin/kubectl-sniff
-    install -m755 static-tcpdump $out/bin/static-tcpdump
-
-    runHook postInstall
-  '';
-
-  dontBuild = true;
+  doCheck = false;
 }
