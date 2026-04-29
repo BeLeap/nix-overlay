@@ -1,5 +1,6 @@
 {
   lib,
+  makeWrapper,
   buildGoModule,
   fetchFromGitHub,
   pkgsCross,
@@ -48,6 +49,8 @@ in
   buildGoModule rec {
     pname = "kubectl-sniff";
     version = "1.6.2";
+
+    nativeBuildInputs = [makeWrapper];
 
     src = fetchFromGitHub {
       owner = "eldadru";
