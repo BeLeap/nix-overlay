@@ -16,7 +16,7 @@ in {
   kubectl-sniff = prev.callPackage ./pkgs/kubectl-sniff.nix {inherit pinnedPkgs;};
   pchar = prev.callPackage ./pkgs/pchar.nix {};
   wezterm-null = prev.callPackage ./pkgs/wezterm {};
-  joplin-terminal = prev.callPackage ./pkgs/joplin-terminal {};
+  joplin-terminal = prev.callPackage ./pkgs/joplin-terminal {inherit (pinnedPkgs) joplin-cli;};
   rusty-kotlin-lsp = prev.callPackage ./pkgs/rusty-kotlin-lsp.nix {};
 
   kdeconnect-mac = prev.callPackage ./pkgs/kdeconnect-mac.nix {};
