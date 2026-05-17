@@ -1,14 +1,19 @@
 {
   boda-flake,
   kubectl-check-flake,
-}: final: prev: {
+  nixpkgs,
+}: final: prev: let
+  pinnedPkgs = import nixpkgs {
+    system = final.stdenv.hostPlatform.system;
+  };
+in {
   kubectl-check = kubectl-check-flake.packages.${final.stdenv.hostPlatform.system}.default;
   boda = boda-flake.packages.${final.stdenv.hostPlatform.system}.default;
   nanum-myeongjo = prev.callPackage ./pkgs/nanum-myeongjo.nix {};
   dnsi = prev.callPackage ./pkgs/dnsi.nix {};
   empiriqa = prev.callPackage ./pkgs/empiriqa.nix {};
   kotlin-lsp = prev.callPackage ./pkgs/kotlin-lsp {};
-  kubectl-sniff = prev.callPackage ./pkgs/kubectl-sniff.nix {};
+  kubectl-sniff = prev.callPackage ./pkgs/kubectl-sniff.nix {inherit pinnedPkgs;};
   pchar = prev.callPackage ./pkgs/pchar.nix {};
   wezterm-null = prev.callPackage ./pkgs/wezterm {};
   joplin-terminal = prev.callPackage ./pkgs/joplin-terminal {};
