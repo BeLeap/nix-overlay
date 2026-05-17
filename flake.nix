@@ -33,7 +33,7 @@
     ...
   }: let
     overlay = import ./overlay.nix {
-      inherit boda-flake kubectl-check-flake;
+      inherit boda-flake kubectl-check-flake nixpkgs;
     };
   in
     {

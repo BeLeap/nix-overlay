@@ -3,9 +3,9 @@
   makeWrapper,
   buildGoModule,
   fetchFromGitHub,
-  pkgsCross,
+  pinnedPkgs,
 }: let
-  static-tcpdump = pkgsCross.musl64.pkgsStatic.callPackage (
+  static-tcpdump = pinnedPkgs.pkgsCross.musl64.pkgsStatic.callPackage (
     {
       lib,
       stdenv,
