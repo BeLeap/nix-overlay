@@ -34,3 +34,10 @@ Second follow-up:
 - Added an explicit `qemuUnsupportedPackages` filter in the shared matrix
   generator and excluded only `joplin-terminal` from `aarch64-linux` QEMU CI.
   The package remains in the `x86_64-linux` and `aarch64-darwin` matrix entries.
+
+Third follow-up:
+
+- The inline `nix eval --expr` script in the workflow broke Bash quoting because
+  the Nix expression comment contained an apostrophe. Moved the matrix expression
+  to `scripts/define-package-matrix.nix` and changed the workflow to run
+  `nix eval --json --impure --file scripts/define-package-matrix.nix`.
