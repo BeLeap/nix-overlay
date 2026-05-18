@@ -37,6 +37,7 @@ jobs:
             in {
               include =
                 mkEntries "x86_64-linux" "ubuntu-latest"
+                ++ mkEntries "aarch64-linux" "ubuntu-latest"
                 ++ mkEntries "aarch64-darwin" "macos-latest";
             }
           ')"
