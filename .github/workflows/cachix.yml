@@ -71,5 +71,14 @@ jobs:
           name: ${{ env.CACHIX_CACHE_NAME }}
           authToken: ${{ env.CACHIX_AUTH_TOKEN }}
 
+      - name: Show Nix platforms
+        run: nix config show | grep -E '^(system|extra-platforms) ='
+
       - name: Build package
-        run: nix build --print-build-logs .#packages.${{ matrix.system }}.${{ matrix.name }}
+        run: |
+          nix_options=()
+          if [[ "${{ matrix.system }}" == "aarch64-linux" ]]; then
+            nix_options+=(--option extra-platforms aarch64-linux)
+          fi
+
+          nix build --print-build-logs "${nix_options[@]}" .#packages.${{ matrix.system }}.${{ matrix.name }}

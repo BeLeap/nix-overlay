@@ -14,3 +14,13 @@ Validation performed:
 - `nix eval` of the shared matrix expression confirmed `aarch64-linux` package
   entries are generated with `ubuntu-latest`.
 - Ruby YAML parsing succeeded for all three touched workflow files.
+
+Follow-up:
+
+- CI still reported a Nix platform mismatch while building an `aarch64-linux`
+  derivation from the x86_64 Linux runner. Added `--option extra-platforms
+  aarch64-linux` directly to the `nix build` command for `aarch64-linux` matrix
+  entries, so the build invocation does not rely only on install-time Nix
+  configuration.
+- Added a small `nix config show` diagnostic in both build workflows to surface
+  `system` and `extra-platforms` in CI logs.
