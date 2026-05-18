@@ -24,3 +24,13 @@ Follow-up:
   configuration.
 - Added a small `nix config show` diagnostic in both build workflows to surface
   `system` and `extra-platforms` in CI logs.
+
+Second follow-up:
+
+- `joplin-terminal` reached the emulated build phase but failed inside
+  `joplin-cli`'s Yarn/Node install hook with `qemu: uncaught target signal 4
+  (Illegal instruction)`. This is a QEMU execution failure, not a Nix platform
+  configuration failure.
+- Added an explicit `qemuUnsupportedPackages` filter in the shared matrix
+  generator and excluded only `joplin-terminal` from `aarch64-linux` QEMU CI.
+  The package remains in the `x86_64-linux` and `aarch64-darwin` matrix entries.
