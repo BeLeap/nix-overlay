@@ -76,7 +76,7 @@ jobs:
 
       - name: Build package
         run: |
-          nix_options=(--accept-flake-config)
+          nix_options=(--accept-flake-config --log-format bar-with-logs)
           if [[ "${{ matrix.system }}" == "aarch64-linux" ]]; then
             nix_options+=(--option extra-platforms aarch64-linux)
           fi
