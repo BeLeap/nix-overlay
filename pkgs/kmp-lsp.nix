@@ -11,9 +11,9 @@ rustPlatform.buildRustPackage rec {
     owner = "Hessesian";
     repo = "kotlin-lsp";
     rev = "v${version}";
-    hash = "sha256-r2xny76NtvIi9zCs0JKdpiCglFbJlzf7eFL4iBGrdAc=";
+    hash = "sha256-78ooVOoySdMZAhgpDJZjqEaOEIzSPZ1mC2M79OSCt4o=";
   };
-  cargoHash = "sha256-lViQHU33YeNl8K6UV83fhHCiCO11ppSzUgzKc0ruwu4=";
+  cargoHash = "sha256-28SAdHRlOMyMgPfYzYtjfqPDCcei4uPk0X/mc4SIeYM=";
 
   nativeBuildInputs = with pkgs; [
     makeWrapper
