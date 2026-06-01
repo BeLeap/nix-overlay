@@ -1,14 +1,15 @@
 let
   flake = builtins.getFlake (toString ./..);
 
-  qemuUnsupportedPackages = {
-    # joplin-cli runs a target-architecture Yarn/Node install step that
-    # currently traps with SIGILL under the GitHub x86_64 Linux QEMU setup.
-    aarch64-linux = ["joplin-terminal"];
+  skippedPackages = {
+    # joplin-cli previously trapped with SIGILL under the GitHub x86_64 Linux
+    # QEMU setup. Keep it out of aarch64-linux CI until native arm64 builds are
+    # validated separately.
+    # aarch64-linux = ["joplin-terminal"];
   };
 
   isSupported = system: name:
-    !(builtins.elem name (qemuUnsupportedPackages.${system} or []));
+    !(builtins.elem name (skippedPackages.${system} or []));
 
   mkEntries = system: os:
     builtins.map
@@ -21,6 +22,6 @@ let
 in {
   include =
     mkEntries "x86_64-linux" "ubuntu-latest"
-    ++ mkEntries "aarch64-linux" "ubuntu-latest"
+    ++ mkEntries "aarch64-linux" "ubuntu-24.04-arm"
     ++ mkEntries "aarch64-darwin" "macos-latest";
 }
