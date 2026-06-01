@@ -17,7 +17,7 @@ in {
   pchar = pinnedPkgs.callPackage ./pkgs/pchar.nix {};
   wezterm-null = pinnedPkgs.callPackage ./pkgs/wezterm {};
   joplin-terminal = pinnedPkgs.callPackage ./pkgs/joplin-terminal {};
-  rusty-kotlin-lsp = pinnedPkgs.callPackage ./pkgs/rusty-kotlin-lsp.nix {};
+  kmp-lsp = pinnedPkgs.callPackage ./pkgs/kmp-lsp.nix {};
 
   kdeconnect-mac = pinnedPkgs.callPackage ./pkgs/kdeconnect-mac.nix {};
   envoy-tahoe = pinnedPkgs.callPackage ./pkgs/envoy-tahoe.nix {};

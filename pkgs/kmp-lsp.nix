@@ -5,16 +5,15 @@
   fetchFromGitHub,
 }:
 rustPlatform.buildRustPackage rec {
-  pname = "rusty-kotlin-lsp";
-  name = pname;
-  version = "0.12.1";
+  pname = "kmp-lsp";
+  version = "0.20.0";
   src = fetchFromGitHub {
     owner = "Hessesian";
     repo = "kotlin-lsp";
     rev = "v${version}";
-    hash = "sha256-r2xny76NtvIi9zCs0JKdpiCglFbJlzf7eFL4iBGrdAc=";
+    hash = "sha256-78ooVOoySdMZAhgpDJZjqEaOEIzSPZ1mC2M79OSCt4o=";
   };
-  cargoHash = "sha256-lViQHU33YeNl8K6UV83fhHCiCO11ppSzUgzKc0ruwu4=";
+  cargoHash = "sha256-28SAdHRlOMyMgPfYzYtjfqPDCcei4uPk0X/mc4SIeYM=";
 
   nativeBuildInputs = with pkgs; [
     makeWrapper
@@ -24,11 +23,11 @@ rustPlatform.buildRustPackage rec {
   ];
 
   postFixup = ''
-    wrapProgram $out/bin/kotlin-lsp \
+    wrapProgram $out/bin/kmp-lsp \
       --prefix PATH : ${lib.makeBinPath (with pkgs; [fd ripgrep])}
   '';
 
   meta = {
-    mainProgram = "kotlin-lsp";
+    mainProgram = "kmp-lsp";
   };
 }
