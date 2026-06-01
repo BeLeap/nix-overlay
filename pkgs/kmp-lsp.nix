@@ -5,9 +5,8 @@
   fetchFromGitHub,
 }:
 rustPlatform.buildRustPackage rec {
-  pname = "rusty-kotlin-lsp";
-  name = pname;
-  version = "0.12.1";
+  pname = "kmp-lsp";
+  version = "0.20.0";
   src = fetchFromGitHub {
     owner = "Hessesian";
     repo = "kotlin-lsp";
@@ -24,11 +23,11 @@ rustPlatform.buildRustPackage rec {
   ];
 
   postFixup = ''
-    wrapProgram $out/bin/kotlin-lsp \
+    wrapProgram $out/bin/kmp-lsp \
       --prefix PATH : ${lib.makeBinPath (with pkgs; [fd ripgrep])}
   '';
 
   meta = {
-    mainProgram = "kotlin-lsp";
+    mainProgram = "kmp-lsp";
   };
 }
