@@ -5,7 +5,7 @@ let
     # joplin-cli previously trapped with SIGILL under the GitHub x86_64 Linux
     # QEMU setup. Keep it out of aarch64-linux CI until native arm64 builds are
     # validated separately.
-    aarch64-linux = ["joplin-terminal"];
+    # aarch64-linux = ["joplin-terminal"];
   };
 
   isSupported = system: name:
