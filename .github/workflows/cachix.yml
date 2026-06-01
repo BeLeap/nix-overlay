@@ -27,12 +27,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Set up QEMU
-        if: ${{ matrix.system == 'aarch64-linux' }}
-        uses: docker/setup-qemu-action@v3
-        with:
-          platforms: arm64
-
       - name: Install Nix
         uses: cachix/install-nix-action@v31
         with:
@@ -40,7 +34,6 @@ jobs:
           nix_conf: |
             keep-env-derivations = true
             keep-outputs = true
-            ${{ matrix.system == 'aarch64-linux' && 'extra-platforms = aarch64-linux' || '' }}
       - name: Restore and save Nix store
         uses: nix-community/cache-nix-action@v7
         with:
@@ -77,8 +70,5 @@ jobs:
       - name: Build package
         run: |
           nix_options=(--accept-flake-config --log-format bar-with-logs)
-          if [[ "${{ matrix.system }}" == "aarch64-linux" ]]; then
-            nix_options+=(--option extra-platforms aarch64-linux)
-          fi
 
           nix build --print-build-logs "${nix_options[@]}" .#packages.${{ matrix.system }}.${{ matrix.name }}
