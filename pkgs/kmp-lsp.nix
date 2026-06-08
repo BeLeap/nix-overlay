@@ -9,7 +9,7 @@ rustPlatform.buildRustPackage rec {
   version = "0.20.0";
   src = fetchFromGitHub {
     owner = "Hessesian";
-    repo = "kotlin-lsp";
+    repo = "kmp-lsp";
     rev = "v${version}";
     hash = "sha256-78ooVOoySdMZAhgpDJZjqEaOEIzSPZ1mC2M79OSCt4o=";
   };
