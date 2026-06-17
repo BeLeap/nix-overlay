@@ -14,6 +14,7 @@ in {
   empiriqa = pinnedPkgs.callPackage ./pkgs/empiriqa.nix {};
   kotlin-lsp = pinnedPkgs.callPackage ./pkgs/kotlin-lsp {};
   kubectl-sniff = pinnedPkgs.callPackage ./pkgs/kubectl-sniff.nix {};
+  ku = pinnedPkgs.callPackage ./pkgs/ku.nix {};
   pchar = pinnedPkgs.callPackage ./pkgs/pchar.nix {};
   wezterm-null = pinnedPkgs.callPackage ./pkgs/wezterm {};
   joplin-terminal = pinnedPkgs.callPackage ./pkgs/joplin-terminal {};
