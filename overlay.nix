@@ -18,6 +18,7 @@ in {
   wezterm-null = pinnedPkgs.callPackage ./pkgs/wezterm {};
   joplin-terminal = pinnedPkgs.callPackage ./pkgs/joplin-terminal {};
   kmp-lsp = pinnedPkgs.callPackage ./pkgs/kmp-lsp.nix {};
+  saml-tracer = pinnedPkgs.callPackage ./pkgs/saml-tracer.nix {};
 
   kdeconnect-mac = pinnedPkgs.callPackage ./pkgs/kdeconnect-mac.nix {};
   envoy-tahoe = pinnedPkgs.callPackage ./pkgs/envoy-tahoe.nix {};
