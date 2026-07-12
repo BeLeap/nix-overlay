@@ -72,6 +72,7 @@
               envoy-tahoe
               kdeconnect-mac
               google-messages
+              wezterm-dmg
               ;
           };
         checks = pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
