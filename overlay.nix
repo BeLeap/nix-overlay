@@ -21,6 +21,7 @@ in {
   saml-tracer = pinnedPkgs.callPackage ./pkgs/saml-tracer.nix {};
 
   kdeconnect-mac = pinnedPkgs.callPackage ./pkgs/kdeconnect-mac.nix {};
+  keeping-you-awake = pinnedPkgs.callPackage ./pkgs/keeping-you-awake.nix {};
   envoy-tahoe = pinnedPkgs.callPackage ./pkgs/envoy-tahoe.nix {};
   google-messages = pinnedPkgs.callPackage ./pkgs/google-messages.nix {};
   wezterm-dmg = pinnedPkgs.callPackage ./pkgs/wezterm-dmg.nix {};
