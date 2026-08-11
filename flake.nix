@@ -71,12 +71,14 @@
               (pkgs)
               envoy-tahoe
               kdeconnect-mac
+              keeping-you-awake
               google-messages
               wezterm-dmg
               ;
           };
         checks = pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
           kdeconnect-mac = pkgs.kdeconnect-mac;
+          keeping-you-awake = pkgs.keeping-you-awake;
         };
       }
     );
