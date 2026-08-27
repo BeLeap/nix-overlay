@@ -14,7 +14,7 @@ rustPlatform.buildRustPackage rec {
     hash = "sha256-OOVU/H03T52uvrpgnjjw10xZWR9cx7r+h1IN+YBRyfM=";
   };
 
-  cargoHash = "sha256-MTZCA266g2pgCl13e8AIrNc9D0aDvmfQMBtEyI/xVSc=";
+  cargoHash = "sha256-ORn2xiyanQgHeCol1+fDc+Ua9PbvApMg7FZIFn658E0=";
 
   meta = {
     description = "Inspect macOS accessibility hierarchies from the terminal";
