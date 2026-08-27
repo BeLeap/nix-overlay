@@ -7,3 +7,6 @@
 - Corrected the Cargo vendor hash to the value produced by Nix's
   `fetchCargoVendor` implementation after the initial macOS CI build reported
   the fixed-output hash mismatch.
+- Added Swift to the native build tools and selected Apple SDK 15 after the
+  subsequent macOS build showed that `screencapturekit` could not find a Swift
+  compiler and rejected the default Apple SDK 14 for its macOS 15 APIs.

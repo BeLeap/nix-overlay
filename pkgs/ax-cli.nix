@@ -2,6 +2,8 @@
   lib,
   rustPlatform,
   fetchFromGitHub,
+  apple-sdk_15,
+  swift,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "ax-cli";
@@ -15,6 +17,10 @@ rustPlatform.buildRustPackage rec {
   };
 
   cargoHash = "sha256-ORn2xiyanQgHeCol1+fDc+Ua9PbvApMg7FZIFn658E0=";
+
+  nativeBuildInputs = [ swift ];
+
+  buildInputs = [ apple-sdk_15 ];
 
   meta = {
     description = "Inspect macOS accessibility hierarchies from the terminal";
