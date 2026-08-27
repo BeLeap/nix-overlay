@@ -16,3 +16,6 @@
 - Added explicit pre-build checks for both `swift` and `swift-build`. A future
   Swift packaging regression will now fail immediately with a focused error
   instead of surfacing later as a `screencapturekit` build-script panic.
+- Explicitly prepended SwiftPM's binary directory to `PATH` before the Cargo
+  build. The Nix Swift wrapper implements `swift build` by executing
+  `swift-build` from `PATH`, so this avoids depending on setup-hook ordering.
