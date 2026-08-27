@@ -13,3 +13,6 @@
 - Added SwiftPM after CI confirmed the compiler wrapper was present but the
   `swift build` command could not locate `swift-build`. Disabled SwiftPM's
   build and check hooks so Cargo remains responsible for this Rust package.
+- Added explicit pre-build checks for both `swift` and `swift-build`. A future
+  Swift packaging regression will now fail immediately with a focused error
+  instead of surfacing later as a `screencapturekit` build-script panic.

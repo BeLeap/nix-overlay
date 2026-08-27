@@ -32,6 +32,13 @@ rustPlatform.buildRustPackage rec {
 
   buildInputs = [ apple-sdk_15 ];
 
+  preBuild = ''
+    command -v swift >/dev/null \
+      || { echo "error: ax-cli requires the Swift compiler" >&2; exit 1; }
+    command -v swift-build >/dev/null \
+      || { echo "error: ax-cli requires SwiftPM's swift-build executable" >&2; exit 1; }
+  '';
+
   meta = {
     description = "Inspect macOS accessibility hierarchies from the terminal";
     homepage = "https://github.com/watzon/ax-cli";
