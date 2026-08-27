@@ -4,6 +4,7 @@
   fetchFromGitHub,
   apple-sdk_15,
   swift,
+  swiftpm,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "ax-cli";
@@ -18,7 +19,16 @@ rustPlatform.buildRustPackage rec {
 
   cargoHash = "sha256-ORn2xiyanQgHeCol1+fDc+Ua9PbvApMg7FZIFn658E0=";
 
-  nativeBuildInputs = [ swift ];
+  # screencapturekit builds its Swift bridge with `swift build`. Keep Cargo in
+  # charge of the Rust build instead of allowing SwiftPM's setup hook to
+  # replace the build and check phases.
+  dontUseSwiftpmBuild = true;
+  dontUseSwiftpmCheck = true;
+
+  nativeBuildInputs = [
+    swift
+    swiftpm
+  ];
 
   buildInputs = [ apple-sdk_15 ];
 
