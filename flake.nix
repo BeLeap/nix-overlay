@@ -69,6 +69,7 @@
           // pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
             inherit
               (pkgs)
+              ax-cli
               envoy-tahoe
               kdeconnect-mac
               keeping-you-awake

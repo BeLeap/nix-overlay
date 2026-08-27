@@ -20,6 +20,7 @@ in {
   kmp-lsp = pinnedPkgs.callPackage ./pkgs/kmp-lsp.nix {};
   saml-tracer = pinnedPkgs.callPackage ./pkgs/saml-tracer.nix {};
 
+  ax-cli = pinnedPkgs.callPackage ./pkgs/ax-cli.nix {};
   kdeconnect-mac = pinnedPkgs.callPackage ./pkgs/kdeconnect-mac.nix {};
   keeping-you-awake = pinnedPkgs.callPackage ./pkgs/keeping-you-awake.nix {};
   envoy-tahoe = pinnedPkgs.callPackage ./pkgs/envoy-tahoe.nix {};
