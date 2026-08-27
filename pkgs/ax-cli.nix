@@ -42,6 +42,12 @@ rustPlatform.buildRustPackage rec {
       || { echo "error: ax-cli requires the Swift compiler" >&2; exit 1; }
     command -v swift-build >/dev/null \
       || { echo "error: ax-cli requires SwiftPM's swift-build executable" >&2; exit 1; }
+
+    # Checking swift-build alone is insufficient: screencapturekit invokes it
+    # through the `swift build` wrapper. Exercise that exact dispatch path now
+    # so wrapper/PATH integration failures are reported before Cargo starts.
+    swift build --version >/dev/null \
+      || { echo "error: the Swift wrapper cannot dispatch to swift-build" >&2; exit 1; }
   '';
 
   meta = {

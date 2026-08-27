@@ -19,3 +19,7 @@
 - Explicitly prepended SwiftPM's binary directory to `PATH` before the Cargo
   build. The Nix Swift wrapper implements `swift build` by executing
   `swift-build` from `PATH`, so this avoids depending on setup-hook ordering.
+- Added a preflight invocation of `swift build --version`. Checking that the
+  two binaries exist separately does not prove that the Swift wrapper can
+  dispatch its `build` subcommand, which is the exact path used by
+  `screencapturekit`'s build script.
