@@ -74,11 +74,13 @@
               keeping-you-awake
               google-messages
               wezterm-dmg
+              ax-cli
               ;
           };
         checks = pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
           kdeconnect-mac = pkgs.kdeconnect-mac;
           keeping-you-awake = pkgs.keeping-you-awake;
+          ax-cli = pkgs.ax-cli;
         };
       }
     );
