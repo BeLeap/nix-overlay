@@ -22,6 +22,7 @@ in {
   ax-cli = pinnedPkgs.callPackage ./pkgs/ax-cli.nix {
     appleSdk = pinnedPkgs."apple-sdk";
   };
+  poke-token-bar = pinnedPkgs.callPackage ./pkgs/poke-token-bar.nix {};
 
   kdeconnect-mac = pinnedPkgs.callPackage ./pkgs/kdeconnect-mac.nix {};
   keeping-you-awake = pinnedPkgs.callPackage ./pkgs/keeping-you-awake.nix {};

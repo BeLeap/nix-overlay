@@ -75,12 +75,14 @@
               google-messages
               wezterm-dmg
               ax-cli
+              poke-token-bar
               ;
           };
         checks = pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
           kdeconnect-mac = pkgs.kdeconnect-mac;
           keeping-you-awake = pkgs.keeping-you-awake;
           ax-cli = pkgs.ax-cli;
+          poke-token-bar = pkgs.poke-token-bar;
         };
       }
     );
