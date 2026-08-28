@@ -55,6 +55,7 @@
               kubectl-check
               boda
               nanum-myeongjo
+              monoplex-kr-nerd
               dnsi
               empiriqa
               kotlin-lsp

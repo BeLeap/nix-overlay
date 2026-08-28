@@ -10,6 +10,7 @@ in {
   kubectl-check = kubectl-check-flake.packages.${final.stdenv.hostPlatform.system}.default;
   boda = boda-flake.packages.${final.stdenv.hostPlatform.system}.default;
   nanum-myeongjo = pinnedPkgs.callPackage ./pkgs/nanum-myeongjo.nix {};
+  monoplex-kr-nerd = pinnedPkgs.callPackage ./pkgs/monoplex-kr-nerd.nix {};
   dnsi = pinnedPkgs.callPackage ./pkgs/dnsi.nix {};
   empiriqa = pinnedPkgs.callPackage ./pkgs/empiriqa.nix {};
   kotlin-lsp = pinnedPkgs.callPackage ./pkgs/kotlin-lsp {};
