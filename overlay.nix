@@ -24,6 +24,7 @@ in {
     appleSdk = pinnedPkgs."apple-sdk";
   };
   poke-token-bar = pinnedPkgs.callPackage ./pkgs/poke-token-bar.nix {};
+  minute = pinnedPkgs.callPackage ./pkgs/minute.nix {};
 
   kdeconnect-mac = pinnedPkgs.callPackage ./pkgs/kdeconnect-mac.nix {};
   keeping-you-awake = pinnedPkgs.callPackage ./pkgs/keeping-you-awake.nix {};

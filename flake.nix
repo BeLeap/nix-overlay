@@ -67,6 +67,9 @@
               saml-tracer
               ;
           }
+          // pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
+            inherit (pkgs) minute;
+          }
           // pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
             inherit
               (pkgs)
@@ -79,12 +82,16 @@
               poke-token-bar
               ;
           };
-        checks = pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
-          kdeconnect-mac = pkgs.kdeconnect-mac;
-          keeping-you-awake = pkgs.keeping-you-awake;
-          ax-cli = pkgs.ax-cli;
-          poke-token-bar = pkgs.poke-token-bar;
-        };
+        checks =
+          pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
+            minute = pkgs.minute;
+          }
+          // pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
+            kdeconnect-mac = pkgs.kdeconnect-mac;
+            keeping-you-awake = pkgs.keeping-you-awake;
+            ax-cli = pkgs.ax-cli;
+            poke-token-bar = pkgs.poke-token-bar;
+          };
       }
     );
 }
