@@ -77,6 +77,7 @@
               wezterm-dmg
               ax-cli
               poke-token-bar
+              minute
               ;
           };
         checks = pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
@@ -84,6 +85,7 @@
           keeping-you-awake = pkgs.keeping-you-awake;
           ax-cli = pkgs.ax-cli;
           poke-token-bar = pkgs.poke-token-bar;
+          minute = pkgs.minute;
         };
       }
     );
