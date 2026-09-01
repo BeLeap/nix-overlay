@@ -16,6 +16,12 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   nativeBuildInputs = [undmg];
   sourceRoot = ".";
 
+  unpackPhase = ''
+    runHook preUnpack
+    undmg "$src"
+    runHook postUnpack
+  '';
+
   installPhase = ''
     runHook preInstall
     mkdir -p "$out/Applications"
