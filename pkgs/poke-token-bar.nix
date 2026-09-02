@@ -6,7 +6,7 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "poke-token-bar";
-  version = "2.5.2";
+  version = "2.5.3";
 
   src = fetchurl {
     url = "https://github.com/chattymin/PokeTokenBar/releases/download/v${finalAttrs.version}/PokeTokenBar.zip";
