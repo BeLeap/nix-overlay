@@ -23,6 +23,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    wezterm-flake = {
+      url = "github:wezterm/wezterm?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
   outputs = {
@@ -30,10 +35,11 @@
     flake-utils,
     boda-flake,
     kubectl-check-flake,
+    wezterm-flake,
     ...
   }: let
     overlay = import ./overlay.nix {
-      inherit boda-flake kubectl-check-flake nixpkgs;
+      inherit nixpkgs wezterm-flake boda-flake kubectl-check-flake;
     };
   in
     {

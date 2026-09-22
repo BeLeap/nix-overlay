@@ -1,7 +1,8 @@
 {
+  nixpkgs,
   boda-flake,
   kubectl-check-flake,
-  nixpkgs,
+  wezterm-flake,
 }: final: prev: let
   pinnedPkgs = import nixpkgs {
     system = final.stdenv.hostPlatform.system;
@@ -17,7 +18,7 @@ in {
   kubectl-sniff = pinnedPkgs.callPackage ./pkgs/kubectl-sniff.nix {};
   kubectl-rexec = pinnedPkgs.callPackage ./pkgs/kubectl-rexec.nix {};
   pchar = pinnedPkgs.callPackage ./pkgs/pchar.nix {};
-  wezterm-null = pinnedPkgs.callPackage ./pkgs/wezterm {};
+  wezterm-upstream = wezterm-flake.packages.${final.stdenv.hostPlatform.system}.default;
   joplin-terminal = pinnedPkgs.callPackage ./pkgs/joplin-terminal {};
   kmp-lsp = pinnedPkgs.callPackage ./pkgs/kmp-lsp.nix {};
   saml-tracer = pinnedPkgs.callPackage ./pkgs/saml-tracer.nix {};
@@ -31,5 +32,4 @@ in {
   keeping-you-awake = pinnedPkgs.callPackage ./pkgs/keeping-you-awake.nix {};
   envoy-tahoe = pinnedPkgs.callPackage ./pkgs/envoy-tahoe.nix {};
   google-messages = pinnedPkgs.callPackage ./pkgs/google-messages.nix {};
-  wezterm-dmg = pinnedPkgs.callPackage ./pkgs/wezterm-dmg.nix {};
 }
