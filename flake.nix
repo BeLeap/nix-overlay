@@ -60,6 +60,7 @@
               empiriqa
               kotlin-lsp
               kubectl-sniff
+              kubectl-rexec
               pchar
               wezterm-null
               joplin-terminal
