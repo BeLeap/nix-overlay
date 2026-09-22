@@ -11,6 +11,7 @@
   xcbuild,
   buildPackages,
   clang_20,
+  runCommand,
 }: let
   # Yarn 4.14 tries to resolve cached packages from the registry with this
   # lockfile. Keep the builder on the 4.13 series until the offline hook is
@@ -24,6 +25,17 @@
       hash = "sha256-FP15a2ueihDm6f/GdXsnqI5drVHo0EtbmrhCZfRdugQ=";
     };
   });
+
+  # yarnBerryConfigHook embeds the Yarn executable path, so overriding the
+  # offline package alone still makes the hook invoke Yarn 4.14.
+  yarn-berry-config-hook-4-13 = runCommand "yarn-berry-config-hook-4.13" {} ''
+    mkdir -p "$out/nix-support"
+    sed \
+      's|${yarn-berry_4.yarn-berry-offline}/bin/yarn|${yarn-berry-offline-4-13}/bin/yarn|g' \
+      ${yarn-berry_4.yarnBerryConfigHook}/nix-support/setup-hook \
+      > "$out/nix-support/setup-hook"
+    chmod +x "$out/nix-support/setup-hook"
+  '';
 in
 
 stdenv.mkDerivation (finalAttrs: {
@@ -51,7 +63,7 @@ stdenv.mkDerivation (finalAttrs: {
   nativeBuildInputs = [
     nodejs
     yarn-berry-offline-4-13
-    yarn-berry_4.yarnBerryConfigHook
+    yarn-berry-config-hook-4-13
     (python3.withPackages (ps: with ps; [ distutils ]))
     pkg-config
     libsecret
