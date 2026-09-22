@@ -65,6 +65,12 @@ stdenv.mkDerivation (finalAttrs: {
     sed -i '/postinstall/d' package.json
     # Don't install onenote-converter subpackage deps
     sed -i '/onenote-converter/d' packages/{lib,app-cli}/package.json
+    # Yarn 4.14 requires these settings for lockfile version 8 projects.
+    cat >> .yarnrc.yml <<'EOF'
+    enableScripts: true
+    approvedGitRepositories:
+      - "**"
+    EOF
   '';
 
   buildPhase = ''
