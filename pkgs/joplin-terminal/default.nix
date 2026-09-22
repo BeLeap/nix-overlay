@@ -70,6 +70,8 @@ stdenv.mkDerivation (finalAttrs: {
     enableScripts: true
     approvedGitRepositories:
       - "**"
+    # Hardened mode performs registry validation, which is unavailable in Nix's offline build.
+    enableHardenedMode: false
     EOF
   '';
 
