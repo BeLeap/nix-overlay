@@ -11,7 +11,20 @@
   xcbuild,
   buildPackages,
   clang_20,
-}:
+}: let
+  # Yarn 4.14 tries to resolve cached packages from the registry with this
+  # lockfile. Keep the builder on the 4.13 series until the offline hook is
+  # fixed upstream.
+  yarn-berry-offline-4-13 = yarn-berry_4.yarn-berry-offline.overrideAttrs (_: {
+    version = "4.13.0";
+    src = fetchFromGitHub {
+      owner = "yarnpkg";
+      repo = "berry";
+      rev = "refs/tags/@yarnpkg/cli/4.13.0";
+      hash = "sha256-FP15a2ueihDm6f/GdXsnqI5drVHo0EtbmrhCZfRdugQ=";
+    };
+  });
+in
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "joplin-terminal";
@@ -37,7 +50,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [
     nodejs
-    yarn-berry_4.yarn-berry-offline
+    yarn-berry-offline-4-13
     yarn-berry_4.yarnBerryConfigHook
     (python3.withPackages (ps: with ps; [ distutils ]))
     pkg-config
@@ -65,14 +78,6 @@ stdenv.mkDerivation (finalAttrs: {
     sed -i '/postinstall/d' package.json
     # Don't install onenote-converter subpackage deps
     sed -i '/onenote-converter/d' packages/{lib,app-cli}/package.json
-    # Yarn 4.14 requires these settings for lockfile version 8 projects.
-    cat >> .yarnrc.yml <<'EOF'
-    enableScripts: true
-    approvedGitRepositories:
-      - "**"
-    # Hardened mode performs registry validation, which is unavailable in Nix's offline build.
-    enableHardenedMode: false
-    EOF
   '';
 
   buildPhase = ''
