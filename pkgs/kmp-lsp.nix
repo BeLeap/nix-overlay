@@ -48,11 +48,19 @@ rustPlatform.buildRustPackage rec {
 
     fd
     ripgrep
+  ] ++ lib.optionals stdenv.hostPlatform.isLinux [
+    patchelf
   ];
 
   preCheck = ''
     gzip -dc ${jarIndexer} > kmp-jar-indexer
     chmod +x kmp-jar-indexer
+    ${lib.optionalString stdenv.hostPlatform.isLinux ''
+      patchelf \
+        --set-interpreter "$(cat "$NIX_CC/nix-support/dynamic-linker")" \
+        --set-rpath "${lib.makeLibraryPath [ stdenv.cc.libc stdenv.cc.cc.lib ]}" \
+        kmp-jar-indexer
+    ''}
     while IFS= read -r -d "" binary; do
       install -m 755 kmp-jar-indexer "$(dirname "$binary")/kmp-jar-indexer"
     done < <(find target -type f -name kmp-lsp -print0)
@@ -61,6 +69,12 @@ rustPlatform.buildRustPackage rec {
   postInstall = ''
     gzip -dc ${jarIndexer} > $out/bin/kmp-jar-indexer
     chmod +x $out/bin/kmp-jar-indexer
+    ${lib.optionalString stdenv.hostPlatform.isLinux ''
+      patchelf \
+        --set-interpreter "$(cat "$NIX_CC/nix-support/dynamic-linker")" \
+        --set-rpath "${lib.makeLibraryPath [ stdenv.cc.libc stdenv.cc.cc.lib ]}" \
+        $out/bin/kmp-jar-indexer
+    ''}
   '';
 
   postFixup = ''
