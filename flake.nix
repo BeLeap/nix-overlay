@@ -68,10 +68,10 @@
               kubectl-sniff
               kubectl-rexec
               pchar
-              wezterm-null
               joplin-terminal
               kmp-lsp
               saml-tracer
+              wezterm
               ;
           }
           // pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
@@ -81,7 +81,6 @@
               kdeconnect-mac
               keeping-you-awake
               google-messages
-              wezterm-dmg
               ax-cli
               poke-token-bar
               minute
