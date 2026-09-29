@@ -71,7 +71,7 @@
               joplin-terminal
               kmp-lsp
               saml-tracer
-              wezterm
+              wezterm-upstream
               ;
           }
           // pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
