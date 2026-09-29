@@ -9,12 +9,13 @@
     if final.stdenv.isDarwin
     then
       wezterm-upstream.overrideAttrs (old: {
-        nativeBuildInputs =
-          (old.nativeBuildInputs or [])
-          ++ [final.darwin.sigtool final.darwin.cctools];
         postFixup = (old.postFixup or "") + ''
-          # UNUserNotificationCenter requires the completed .app bundle to be signed.
-          codesign -f -s - "$out/Applications/WezTerm.app"
+          app="$out/Applications/WezTerm.app"
+          # Sign the executables before sealing the resources in the app bundle.
+          for executable in "$app"/Contents/MacOS/*; do
+            /usr/bin/codesign --force --sign - "$executable"
+          done
+          /usr/bin/codesign --force --sign - "$app"
         '';
       })
     else wezterm-upstream;
