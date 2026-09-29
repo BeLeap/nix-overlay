@@ -4,6 +4,20 @@
   kubectl-check-flake,
   wezterm-flake,
 }: final: prev: let
+  wezterm-upstream = wezterm-flake.packages.${final.stdenv.hostPlatform.system}.default;
+  wezterm =
+    if final.stdenv.isDarwin
+    then
+      wezterm-upstream.overrideAttrs (old: {
+        nativeBuildInputs =
+          (old.nativeBuildInputs or [])
+          ++ [final.darwin.sigtool final.darwin.cctools];
+        postFixup = (old.postFixup or "") + ''
+          # UNUserNotificationCenter requires the completed .app bundle to be signed.
+          codesign -f -s - "$out/Applications/WezTerm.app"
+        '';
+      })
+    else wezterm-upstream;
   pinnedPkgs = import nixpkgs {
     system = final.stdenv.hostPlatform.system;
   };
@@ -18,7 +32,7 @@ in {
   kubectl-sniff = pinnedPkgs.callPackage ./pkgs/kubectl-sniff.nix {};
   kubectl-rexec = pinnedPkgs.callPackage ./pkgs/kubectl-rexec.nix {};
   pchar = pinnedPkgs.callPackage ./pkgs/pchar.nix {};
-  wezterm-upstream = wezterm-flake.packages.${final.stdenv.hostPlatform.system}.default;
+  wezterm-upstream = wezterm;
   joplin-terminal = pinnedPkgs.callPackage ./pkgs/joplin-terminal {};
   kmp-lsp = pinnedPkgs.callPackage ./pkgs/kmp-lsp.nix {};
   saml-tracer = pinnedPkgs.callPackage ./pkgs/saml-tracer.nix {};
