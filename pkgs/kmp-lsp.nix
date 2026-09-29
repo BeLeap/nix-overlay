@@ -52,13 +52,17 @@ rustPlatform.buildRustPackage rec {
     patchelf
   ];
 
+  buildInputs = lib.optionals stdenv.hostPlatform.isLinux [
+    pkgs.zlib
+  ];
+
   preCheck = ''
     gzip -dc ${jarIndexer} > kmp-jar-indexer
     chmod +x kmp-jar-indexer
     ${lib.optionalString stdenv.hostPlatform.isLinux ''
       patchelf \
         --set-interpreter "$(cat "$NIX_CC/nix-support/dynamic-linker")" \
-        --set-rpath "${lib.makeLibraryPath [ stdenv.cc.libc stdenv.cc.cc.lib ]}" \
+        --set-rpath "${lib.makeLibraryPath [ stdenv.cc.libc stdenv.cc.cc.lib pkgs.zlib ]}" \
         kmp-jar-indexer
     ''}
     while IFS= read -r -d "" binary; do
@@ -72,7 +76,7 @@ rustPlatform.buildRustPackage rec {
     ${lib.optionalString stdenv.hostPlatform.isLinux ''
       patchelf \
         --set-interpreter "$(cat "$NIX_CC/nix-support/dynamic-linker")" \
-        --set-rpath "${lib.makeLibraryPath [ stdenv.cc.libc stdenv.cc.cc.lib ]}" \
+        --set-rpath "${lib.makeLibraryPath [ stdenv.cc.libc stdenv.cc.cc.lib pkgs.zlib ]}" \
         $out/bin/kmp-jar-indexer
     ''}
   '';
