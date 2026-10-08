@@ -37,6 +37,7 @@ in {
   joplin-terminal = pinnedPkgs.callPackage ./pkgs/joplin-terminal {};
   kmp-lsp = pinnedPkgs.callPackage ./pkgs/kmp-lsp.nix {};
   saml-tracer = pinnedPkgs.callPackage ./pkgs/saml-tracer.nix {};
+  ste = pinnedPkgs.callPackage ./pkgs/ste.nix {};
   ax-cli = pinnedPkgs.callPackage ./pkgs/ax-cli.nix {
     appleSdk = pinnedPkgs."apple-sdk";
   };

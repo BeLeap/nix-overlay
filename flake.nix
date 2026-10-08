@@ -71,6 +71,7 @@
               joplin-terminal
               kmp-lsp
               saml-tracer
+              ste
               wezterm-upstream
               ;
           }
