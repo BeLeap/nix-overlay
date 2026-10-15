@@ -13,6 +13,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
     flake-utils.url = "github:numtide/flake-utils";
+    nix-github-actions = {
+      url = "github:nix-community/nix-github-actions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     boda-flake = {
       url = "github:BeLeap/boda?ref=0.2616.0";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,9 +37,11 @@
   outputs = {
     nixpkgs,
     flake-utils,
+    nix-github-actions,
     boda-flake,
     kubectl-check-flake,
     wezterm-flake,
+    self,
     ...
   }: let
     overlay = import ./overlay.nix {
@@ -45,6 +51,19 @@
     {
       overlays = {
         default = overlay;
+      };
+
+      githubActions = nix-github-actions.lib.mkGithubMatrix {
+        checks = nixpkgs.lib.getAttrs [
+          "x86_64-linux"
+          "aarch64-linux"
+          "aarch64-darwin"
+        ] self.packages;
+        platforms = {
+          "x86_64-linux" = "ubuntu-latest";
+          "aarch64-linux" = "ubuntu-24.04-arm";
+          "aarch64-darwin" = "macos-latest";
+        };
       };
     }
     // flake-utils.lib.eachDefaultSystem (
