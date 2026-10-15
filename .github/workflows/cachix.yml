@@ -38,9 +38,9 @@ jobs:
         uses: nix-community/cache-nix-action@v7
         with:
           # restore and save a cache using this key
-          primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
+          primary-key: nix-${{ runner.os }}-${{ matrix.system }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
           # if there's no cache hit, restore a cache by this prefix
-          restore-prefixes-first-match: nix-${{ runner.os }}-
+          restore-prefixes-first-match: nix-${{ runner.os }}-${{ matrix.system }}-
           # collect garbage until the Nix store size (in bytes) is at most this number
           # before trying to save a new cache
           # 1G = 1073741824
@@ -48,7 +48,7 @@ jobs:
           # do purge caches
           purge: true
           # purge all versions of the cache
-          purge-prefixes: nix-${{ runner.os }}-
+          purge-prefixes: nix-${{ runner.os }}-${{ matrix.system }}-
           # created more than this number of seconds ago
           purge-created: 0
           # or last accessed this duration (ISO 8601 duration format)
@@ -69,6 +69,6 @@ jobs:
 
       - name: Build package
         run: |
-          nix_options=(--accept-flake-config --log-format bar-with-logs)
-
-          nix build --print-build-logs "${nix_options[@]}" .#packages.${{ matrix.system }}.${{ matrix.name }}
+          set -Eeuo pipefail
+          nix build -L --accept-flake-config --log-format bar-with-logs \
+            ".#${{ matrix.attr }}"
