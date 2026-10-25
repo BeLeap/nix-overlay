@@ -18,7 +18,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     boda-flake = {
-      url = "github:BeLeap/boda?ref=0.2616.0";
+      url = "github:BeLeap/boda?ref=0.2643.0";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
