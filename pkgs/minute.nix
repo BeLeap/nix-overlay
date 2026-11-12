@@ -6,11 +6,11 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "minute";
-  version = "1.12.1";
+  version = "1.14.0";
 
   src = fetchurl {
     url = "https://github.com/mraza007/minute/releases/download/v${finalAttrs.version}/Minute-${finalAttrs.version}-arm64.zip";
-    hash = "sha256-IaqUxTG6Fw8fnAParZhypB4mzDjAvyWF6YdhjMIiYxk=";
+    hash = "sha256-aGTvjD1QcojsTt6E+ag5G18nUTlbJ2Gb4euPQ8xCqOA=";
   };
 
   nativeBuildInputs = [unzip];
