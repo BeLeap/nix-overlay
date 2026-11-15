@@ -6,11 +6,11 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "poke-token-bar";
-  version = "2.5.5";
+  version = "2.5.7";
 
   src = fetchurl {
     url = "https://github.com/chattymin/PokeTokenBar/releases/download/v${finalAttrs.version}/PokeTokenBar.zip";
-    hash = "sha256-ztN/8FpZndcYhguD1RPFPmyn2Ug3ijWX0TSYgo1tZTM=";
+    hash = "sha256-QJ1MXv1/294/+eVq0yeU/geFulI8ru4CrL2jVpH+u7o=";
   };
 
   nativeBuildInputs = [unzip];
