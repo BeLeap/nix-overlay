@@ -100,7 +100,6 @@
               envoy-tahoe
               kdeconnect-mac
               keeping-you-awake
-              google-messages
               ax-cli
               poke-token-bar
               minute
