@@ -3,6 +3,7 @@
   boda-flake,
   kubectl-check-flake,
   wezterm-flake,
+  socratic-tutor,
 }: final: prev: let
   wezterm-upstream = wezterm-flake.packages.${final.stdenv.hostPlatform.system}.default;
   wezterm =
@@ -43,6 +44,10 @@ in {
   };
   poke-token-bar = pinnedPkgs.callPackage ./pkgs/poke-token-bar.nix {};
   minute = pinnedPkgs.callPackage ./pkgs/minute.nix {};
+  socratic-tutor-skill = final.runCommand "socratic-tutor-skill" {} ''
+    mkdir -p $out
+    cp -r ${socratic-tutor}/socratic-tutor/. $out/
+  '';
 
   kdeconnect-mac = pinnedPkgs.callPackage ./pkgs/kdeconnect-mac.nix {};
   keeping-you-awake = pinnedPkgs.callPackage ./pkgs/keeping-you-awake.nix {};

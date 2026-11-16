@@ -32,6 +32,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    socratic-tutor = {
+      url = "github:janestreet/agent_skills";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -41,11 +45,12 @@
     boda-flake,
     kubectl-check-flake,
     wezterm-flake,
+    socratic-tutor,
     self,
     ...
   }: let
     overlay = import ./overlay.nix {
-      inherit nixpkgs wezterm-flake boda-flake kubectl-check-flake;
+      inherit nixpkgs wezterm-flake boda-flake kubectl-check-flake socratic-tutor;
     };
   in
     {
@@ -92,6 +97,7 @@
               saml-tracer
               ste
               wezterm-upstream
+              socratic-tutor-skill
               ;
           }
           // pkgs.lib.optionalAttrs (system == "aarch64-darwin") {
